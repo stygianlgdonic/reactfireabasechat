@@ -4,6 +4,7 @@ import "./App.css"
 import firebase from "firebase/app"
 import "firebase/firestore"
 import "firebase/auth"
+import "firebase/messaging"
 
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollectionData } from "react-firebase-hooks/firestore"
@@ -19,6 +20,22 @@ firebase.initializeApp({
 
 const auth = firebase.auth()
 const firestore = firebase.firestore()
+const messaging = firebase.messaging()
+Notification.requestPermission()
+  .then(function () {
+    console.log("permisson  granted!")
+    return messaging.getToken()
+  })
+  .then(function (token) {
+    console.log({ token })
+  })
+  .catch(function (err) {
+    console.log("Permission Denied", err.message)
+  })
+
+messaging.onMessage(function (payload) {
+  console.log("onMessage: ", payload)
+})
 
 function App() {
   const [user] = useAuthState(auth)
