@@ -34,7 +34,7 @@ Notification.requestPermission()
   })
 
 messaging.onMessage(function (payload) {
-  console.log("onMessage: ", payload)
+  alert(payload.notification.title)
 })
 
 function App() {
