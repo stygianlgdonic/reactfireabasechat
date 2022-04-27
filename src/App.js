@@ -41,7 +41,7 @@ function SignIn() {
     auth.signInWithPopup(provider)
   }
 
-  return <button onClick={signInWithGoogle}>Sign in with Google</button>
+  return <button onClick={signInWithGoogle}>Sign in with Google 🔗</button>
 }
 function SignOut() {
   return (
