@@ -7,6 +7,7 @@ import "firebase/auth"
 
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollectionData } from "react-firebase-hooks/firestore"
+import { handleTorch } from "./eyeletapi"
 
 firebase.initializeApp({
   apiKey: "AIzaSyDj4BpuPMUeCiGQNllLqSLgza7W_KfA2V8",
@@ -22,6 +23,9 @@ const firestore = firebase.firestore()
 
 function App() {
   const [user] = useAuthState(auth)
+  useEffect(() => {
+    console.log({ handleTorch: handleTorch() })
+  }, [])
 
   return (
     <div className="App">
