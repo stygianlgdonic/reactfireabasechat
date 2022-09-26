@@ -24,7 +24,11 @@ const firestore = firebase.firestore()
 function App() {
   const [user] = useAuthState(auth)
   useEffect(() => {
-    console.log({ handleTorch: handleTorch() })
+    handleTorch().then(response => {
+      console.log({ response })
+    }).catch(err => {
+      console.log({ err })
+    })
   }, [])
 
   return (

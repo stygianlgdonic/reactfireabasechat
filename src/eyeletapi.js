@@ -8,7 +8,6 @@ export function handleTorch() {
     // Or we need to wait for a moment
     else window.eyeletReadyPromise = () => resolve()
   })
-  console.log({ eyeletReady })
 
   // Once Eyelet is ready...
   eyeletReady.then(() => {
@@ -54,5 +53,6 @@ export function handleTorch() {
     }
   })
   // 7⃣. Also we can just know when Eyelet and User are finally ready and use this info later
-  return allReady = Promise.all([eyeletReady, eyeletUserReady])
+  allReady = Promise.all([eyeletReady, eyeletUserReady])
+  return allReady;
 }
