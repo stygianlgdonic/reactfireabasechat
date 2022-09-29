@@ -7,7 +7,6 @@ import "firebase/auth"
 
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollectionData } from "react-firebase-hooks/firestore"
-import { handleTorch } from "./eyeletapi"
 
 firebase.initializeApp({
   apiKey: "AIzaSyDj4BpuPMUeCiGQNllLqSLgza7W_KfA2V8",
@@ -23,13 +22,6 @@ const firestore = firebase.firestore()
 
 function App() {
   const [user] = useAuthState(auth)
-  useEffect(() => {
-    handleTorch().then(response => {
-      console.log({ response })
-    }).catch(err => {
-      console.log({ err })
-    })
-  }, [])
 
   return (
     <div className="App">
@@ -46,7 +38,18 @@ function App() {
 function SignIn() {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider()
-    auth.signInWithPopup(provider)
+    auth.signInWithPopup(provider).then(response => {
+      console.log({ response })
+      if (response?.user) {
+        const { user } = response;
+        window.eyelet?.identify(user.uid, {
+          name: user.displayName,
+          email: user.email,
+          companyId: "JohnDoeCompanyId",
+          createdAt: new Date().toISOString()
+        })
+      }
+    })
   }
 
   return <button onClick={signInWithGoogle}>Sign in with Google 🔗</button>
