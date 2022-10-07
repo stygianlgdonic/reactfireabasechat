@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1 data-torch="torch_chat_header">⚛️🔥💬</h1>
+        <h1 data-eyelet="eyelet_chat_header">⚛️🔥💬</h1>
         <SignOut />
       </header>
 
