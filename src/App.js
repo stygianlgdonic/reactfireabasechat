@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>⚛️🔥💬</h1>
+        <h1 data-torch="torch_chat_header">⚛️🔥💬</h1>
         <SignOut />
       </header>
 
@@ -42,7 +42,7 @@ function SignIn() {
       console.log({ response })
       if (response?.user) {
         const { user } = response;
-        window.eyelet?.identify(user.uid, {
+        window.eyelet.identify(user.uid, {
           name: user.displayName,
           email: user.email,
           companyId: "JohnDoeCompanyId",
